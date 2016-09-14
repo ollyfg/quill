@@ -130,12 +130,12 @@ class Quill {
     let change = new Delta();
     if (range == null) return change;
     if (Parchment.query(name, Parchment.Scope.BLOCK)) {
-      change = this.formatLine(range, name, value, source);
+      change = this.formatLine(range.index, range.length, name, value, source);
     } else if (range.length === 0) {
       this.selection.format(name, value);
       return change;
     } else {
-      change = this.formatText(range, name, value, source);
+      change = this.formatText(range.index, range.length, name, value, source);
     }
     this.setSelection(range, Emitter.sources.SILENT);
     return change;
